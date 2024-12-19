@@ -1,0 +1,15 @@
+type Query {
+  "Todos los Usuarios (PermisionPolicyUser) que estan registrados para ser Visitados"
+  getPermisionPolicyUser(grupo: String!): [Usuario]
+  "Dinas no laborales"
+  getDiasInhabiles: [ResultDiasInhabiles]
+  "Catalogo de Sexo"
+  getSexo: [ResultSexos]  
+  
+  "Fecha y Hora del Sevidor"
+  getFechaHora: ResultFechaHora
+  # #Enviar a correo
+  enviarCorreo(estructura: CorreoIntup): ResultCorreo
+
+  getCatalogoTipoVista:[ResultTipoVisita]
+}

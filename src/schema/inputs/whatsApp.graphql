@@ -1,0 +1,7 @@
+input WhatsAppIntupApi{
+    Numero: String!
+    Titulo: String!
+    Texto: String!
+    Tipo: Int!
+    Adjuntos: [String]
+}

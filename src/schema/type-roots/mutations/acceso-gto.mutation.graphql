@@ -1,0 +1,6 @@
+type Mutation{
+    # Solicitud que manda GTO
+    NuevaSolicitudCitaGTO(solicitud:SolicitudCitaGTO!):ResultSolicitudCitaGTO
+    # Actualizar Solicitud que manda GTO
+    ActualizarSolicitudCitaGTO(solicitud:SolicitudAccesoGTOUpdate!):ResultSolicitudAccesoGTO
+}

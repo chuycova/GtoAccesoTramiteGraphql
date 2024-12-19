@@ -1,0 +1,138 @@
+type ResultPostulacion {
+  status: Boolean
+  message: String
+  postulante: Postulacion
+}
+type ResultCita {
+  status: Boolean
+  message: String
+  cita: SolicitudTramite
+}
+
+type Postulacion {
+  OidPostulacion: String
+  FolioPostulacion: String
+  OidSolicitud: String
+  OidInvitado: String
+  Nombres: String
+  PrimerApellido: String
+  SegundoApellido: String
+  CURP: String
+  Correo: String
+  OidTramite: String
+  Tramite: String
+  OidDependencia: String
+  Dependencia: String
+  Aceptado: Boolean
+  CitaRealizada: Boolean
+  Confirmar:Boolean
+}
+type SedeTramite {
+  Oid: String
+  Nombre: String
+  Estado: String
+  Municipio: String
+  Direccion: String
+  SedeTramite: String
+  Tramite: String
+  Fechas: [FechaCita]
+}
+type FechaCita {
+  SedeTramite: String
+  FechaCita: String
+  Disponibilidad: Int
+  Ocupados: Int
+  Horarios:[HorarioCita]
+}
+type HorarioCita {
+  Oid: String
+  IniciaCita: String
+}
+
+
+type SolicitudTramite{
+  Oid: String
+  Folio:String
+  Invitado: String
+  Nombres: String
+  PrimerApellido: String
+  SegundoApellido: String
+  CURP: String
+  OidSexo: String
+  Sexo: String
+  Procedencia: String
+  Correo: String
+  Telefono: String
+  InvitadoTramite: String
+  OidSede: String
+  Sede: String
+  Direccion: String
+  OidDependencia: String
+  Dependencia: String
+  OidVentanilla: String
+  Ventanilla: String
+  OidTramite: String
+  Tramite: String
+  OidHorarioCita: String
+  HorarioCita: String
+  FechaHoraVisita:String
+  Placas:String
+  Estatus:String
+  FechaHoraSolicitud:String
+}
+
+# type ResultSolicitudVisita {
+#   status: Boolean!
+#   totalRegistros: Int
+#   paginas: Int
+#   visitas: [Solicitud]
+# }
+
+
+# type ResultCancelacion {
+#   Oid: String!
+#   FechaHoraVisita: String
+#   DiasCancelacion: Int
+#   Estatus: String!
+#   MotivoCancelacion: String
+#   Valido: Boolean!
+# }
+
+# type ResultTipoVisita {
+#   Oid: String
+#   Nombre: String
+#   AforoMaximo: String
+#   AforoMinimo: String
+#   Descripcion: String
+#   MostrarEnLunes: Boolean
+#   MostrarEnMartes: Boolean
+#   MostrarEnMiercoles: Boolean
+#   MostrarEnJueves: Boolean
+#   MostrarEnViernes: Boolean
+#   Citas: [Cita]
+#   Grupos: [ResultTipoGrupo]
+# }
+
+# type ResultTipoGrupo {
+#   Oid: String
+#   Nombre: String
+#   OcultarCampoInstitucion: Boolean
+# }
+
+# type ResultPaginaPrincipal {
+#   Oid: String
+#   Titulo: String
+#   Descripcion: String
+# }
+
+# type ResultHorarioVisita {
+#   Oid: String
+#   HoraInicio: Float
+#   HoraFin: Float
+#   HoraVisita: String
+# }
+
+# type ResultLimiteVisitaSolicitante {
+#   MaxVisitasMes: Int
+#   NuevaVisita: Boolean
+# }

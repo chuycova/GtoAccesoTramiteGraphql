@@ -1,0 +1,49 @@
+type Query {
+  getPostulacionInvitado(Oid:String!):ResultPostulacion
+  getSedeTramiteXTramite(Oid:String!):[SedeTramite]
+  getHorariosXSedeTramiteXFecha(SedeTramite:String!,Fecha:String!):[HorarioCita]
+  getSolicitudTramiteCitaXOid(Oid:String!):SolicitudTramite
+  # "Inicio de sesion con las credenciales del Solicitante (Usuario)"
+  # getLoginSolicitante(correo: String!, pass: String!): ResultToken
+  # "Busca un Solicitante (Usuario) que tenga el correo que se manda como parametro"
+  # getExisteSolicitante(correo: String!): ResultUser
+  # "Obtiene todos los datos de un Solicitante (Usuario) por su Oid"
+  # getSolicitante(oid: String!): ResultUser
+  # "Obtine los datos de un Solicitante (Usuario) para cambiar contraseña"
+  # getSolicitanteRecuperar(oid: String!): ResultToken
+  # "Obtine los Tipos de Visita segun al Visitante (PermisionPolicyUser)"
+  # getTipoVisita(OidVistaA: String!): [ResultTipoVisita]
+  # "Obtiene los Días permitidos de un Tipo de Visita"
+  # getDiasTipoVisita(Oid: String!): ResultTipoVisita
+  # "Todas las visitas que se han echo por un Solicitante"
+  # getAllVisitas(Oid: String): [Solicitud]
+  # "Todas las visitas que se han echo por un Solicitante Paginado"
+  # getMisVisitas(filtro: FiltroVisitasInput): ResultSolicitudVisita
+  # "Obtiene la Información de una Visita especifica"
+  # getVisitaXOid(Oid: String): Solicitud
+  # "Obtiene la Información de una Visita especifica"
+  # getCancelacionVisitaValida(Oid: String!): ResultCancelacion
+  # "Obtiene si tiene una visita el solicitante un dia"
+  # getVisita(Oid: String!, FechaVisita: String!): [Solicitud]
+  # #Obtenemos los datos del Solicitante por medio de TOKEN JWT
+  # miPerfil: ResultUser!
+  # #Configuracion de correo, se pide el tipo de correos
+  getConfiguracionCorreo(Tipo: Int!): ResultConfiguracionCorreo
+  # #Entidades Federativas
+  # allEntidadesFederativas: [ResultEntidadFederativa]
+  # #Tipos de Grupos
+  # allTipoGrupo: [ResultTipoGrupo]
+  # #Informacion de la Pagina Principal
+  # getInformacionPaginaPrincipal: ResultPaginaPrincipal
+  # #Horarios Disponibles segun, la fecha de cita y tl tipo de cita
+  # getHorarioVisitaDisponibles(
+  #   Fecha: String!
+  #   Hora: Int
+  #   TipoVisita: String!
+  # ): [ResultHorarioVisita]
+
+  # getLimiteVisitaMesSolicitante(
+  #   Oid: String!
+  #   Fecha: String!
+  # ): ResultLimiteVisitaSolicitante
+}

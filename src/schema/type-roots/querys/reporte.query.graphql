@@ -1,0 +1,23 @@
+type Query {
+  "Todos los Usuarios (PermisionPolicyUser) que estan registrados para ser Visitados"
+  allReporteVisitas: [ReporteAllVisitas]
+  allReporteListaNegra: [ListaNegra]
+  allGraficaXDia: [EstadisticasXDia]
+  # allGraficaXAnio(fechaInicio:String,fechaFin:String): [EstadisticasXAnio]
+  allAniosRegistradosSolicitud: [AniosXSolicitud]
+  allReporteXSemanasVisitas: [EstadisticasXSemana]
+  allReporteVisitasCalendario: [EstadisticasCalendario]
+  allReporteCalendarioVisitasPorDia(fecha: String): [ReporteAllVisitas]
+  # allGraficaXDiaPorParametros(fechaInicio:String,fechaFin:String): [EstadisticasXDia]
+  # allGraficaXSemanaPorParametros(fechaInicio:String,fechaFin:String): [EstadisticasXSemana]
+  allReporteSinSalidasXFecha(fechaInicio:String,fechaFin:String): [ReporteAllVisitas]
+  allReporteCalendarioSimple: [EstadisticasCalendario]
+  allReporteCalendarioXAF(fecha: String):[ReporteAllVisitas]
+
+  allGraficaXSemanaPorParametros(fechaInicio:String,fechaFin:String): [EstadisticasXSemana]
+  allGraficaXDiaPorParametros(fechaInicio:String,fechaFin:String): [EstadisticasXDia]
+  allGraficaXAnio(fechaInicio:String,fechaFin:String): [EstadisticasXAnio]
+  # allGraficaXDia:[EstadisticasXDia]
+
+
+}

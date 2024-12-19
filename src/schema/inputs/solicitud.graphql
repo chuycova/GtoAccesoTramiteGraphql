@@ -1,0 +1,15 @@
+input SolicitudInput{
+    Oid: String
+    InvitadoTramiteCita: String!
+    SedeCita: String!
+    FechaCita: String!
+    HoraCita: String!
+    Placas: String
+    Registra: String
+}
+
+# input FiltroVisitasInput{
+#     Oid: String 
+#     Offset:Int!
+#     Limit:Int!
+# }

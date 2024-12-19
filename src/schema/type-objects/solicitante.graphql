@@ -1,0 +1,18 @@
+#Son nuestros usuarios los Solicitantes
+type Solicitante{
+    Oid: String!
+    Nombres: String
+    PrimerApellido: String
+    SegundoApellido: String
+    NombreSolicitante: String
+    Correo: String
+    Telefono: String
+    Fotos: Boolean
+    FotografiaDelanteraINEB64: String
+    FotografiaTraseraINEB64: String
+    FotografiaCaraSolicitanteB64: String
+    FechaCreacion: String
+    Pass: String
+    MaxVisitasMes: Int
+    Mailing: Boolean
+}

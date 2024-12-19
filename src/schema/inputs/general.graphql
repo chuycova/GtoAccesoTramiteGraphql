@@ -1,0 +1,11 @@
+input postArchivoInput{
+    interno: Boolean
+    subcarpetadestinoftp: String
+    nombrearchivo: String
+    archivoB64: String
+ 
+}
+type ResultApi{
+    exitoso: Boolean!
+    data: String!
+}

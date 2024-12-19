@@ -1,0 +1,22 @@
+# Se obtine de la tabla Permission Policy User
+type Usuario{
+    Oid: String
+    Titulo: String
+    NombreCompleto: String
+    NombreCompletoPorNombre: String
+    Nombre: String
+    Correo: String
+    ExtensionTelefonica: String
+    Departamento: String
+    Posicion: String
+    Oficina: String
+    Edificio: String
+    Sede: String
+    Dependencia: String
+    ReferenciasParaLlegarEnCamara: String
+    EdificioUbicacion: String
+    VisitasHoy: Int
+    # Cargo: String
+    # EdificioUbicacion: String
+    # TiposVisitas:[TipoVisita]
+}

@@ -1,0 +1,84 @@
+type ReporteAllVisitas {
+  Oid: String
+  Asunto: String
+  Activa: Boolean
+  FechaHoraVisita: String
+  FechaHoraFinVisita: String
+  FechaHoraAceptacion: String
+  FechaHoraSolicitud: String
+  VisitaA: String
+  CorreoVisitaA: String
+  EdificioUbicacion: String
+  ExtensionTelefonica: String
+  Departamento: String
+  Posicion: String
+  Oficina: String
+  Edificio: String
+  OidInvitado: String
+  NombreInvitado: String
+  CorreoInvitado: String
+  Sexo: String
+  Telefono: String
+  Procedencia: String
+  NumeroTarjeta: String
+  FotografiaB64: String
+  RegistraEnVentanilla: String
+  Notificado: Boolean
+  NombreCompletoRegistra: String
+  NumeroRomano: String
+  NumeroLegislatura: Int
+  TipoIdentificacion: String
+  PersonaVisitada: String
+  IngresaEquipo: Boolean
+  FechaUltimaHoraEntrada: String
+  FechaUltimaHoraSalida: String
+  TotalNumVisitas: Int
+  CargoPersonaVisitada: String
+  EsPreregistro: Boolean
+
+}
+
+type EstadisticasXDia{
+  Total_Invitados:Int
+  Total_Visitas:Int
+  Total_Entradas:Int
+  Total_Salidas:Int
+  Total_Adentro:Int
+  Reingresos:Int
+  Total_PreRegistros:Int 
+}
+
+type EstadisticasXAnio{
+  Mes:String
+  NombreMes:String
+  Total_Invitados:Int
+  Total_Visitas:Int
+  Total_Entradas:Int
+  Total_Salidas:Int
+  Total_Adentro:Int
+  Reingresos:Int
+  Total_PreRegistros:Int
+}
+type AniosXSolicitud{
+  Anio:Int
+ 
+}
+type EstadisticasXSemana{
+  Dia:String
+  Fecha:String
+  Total_Invitados:Int
+  Total_Visitas:Int
+  Total_Entradas:Int
+  Total_Salidas:Int
+  Total_Adentro:Int
+  Reingresos:Int
+  Total_PreRegistro: Int
+}
+type EstadisticasCalendario{
+  startDate:String
+  endDate:String
+  Total_Invitados:Int
+  Total_Visitas:Int
+  Total_Entradas:Int
+  Total_Salidas:Int
+}

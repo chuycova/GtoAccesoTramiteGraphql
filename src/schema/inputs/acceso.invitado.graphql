@@ -1,0 +1,225 @@
+input InvitadoInput {
+  Oid: String
+  Nombres: String!
+  PrimerApellido: String!
+  SegundoApellido: String!
+  CURP: String!
+  OidSexo: String
+  Procedencia: String
+  Correo: String!
+  Telefono: String!
+  FotografiaB64: String!
+  UsuarioRegistra: String!
+  PreRegistro:Boolean
+  PorcentajeListaNegra:Int
+}
+input InvitadoActualizarInput {
+  Oid: String!
+  Nombres: String
+  PrimerApellido: String
+  SegundoApellido: String
+  CURP: String
+  OidSexo: String
+  Correo: String
+  Telefono: String
+#   Procedencia: String
+#   FotografiaB64: String
+}
+
+input InvitadoUpdate {
+  Oid: String!
+  Nombres: String!
+  PrimerApellido: String!
+  SegundoApellido: String!
+  OidSexo: String!
+  Procedencia: String
+  Correo: String!
+  Telefono: String!
+  FotografiaB64: String!
+}
+
+input SolicitudUpdate {
+  Oid: String!
+  Asunto: String
+  FotografiaB64: String!
+}
+
+input SolicitudAccesoInput {
+  Oid: String
+  VisitaA: String!
+  Invitado: String!
+  Asunto: String
+  FechaHoraVisita: String!
+  FechaHoraFinVisita: String!
+  FechaHoraSolicitud: String
+  Institucion: String!
+  NumeroTarjeta: String
+  Placa: String
+  Marca: String
+  Modelo: String
+  Color: String
+  FotografiaB64: String!
+  RegistraEnVentanilla: String!
+  PersonaVisitada: String!
+  CargoPersonaVisitada: String!
+  MedioIdentificacion: String!
+  TipoVisita: String!
+  TipoEstacionamiento: String!
+  IngresaEquipo: Boolean
+  PreRegistro:Boolean
+  PorcentajeListaNegra: Int
+  NoAcompaniantes:Int
+  Vigencia: SolicitudAccesoVigenciaInput
+}
+input SolicitudAccesoVigenciaInput {
+  Dias: [Boolean]
+  FechaHoraFinVisita: String
+}
+input SolicitudAccesoUpdate {
+  Oid: String!
+  Asunto: String
+  Institucion: String
+  NumeroTarjeta: String
+  Placa: String
+  Marca: String
+  Modelo: String
+  Color: String
+  FotografiaB64: String
+  RegistraEnVentanilla: String
+  MedioIdentificacion: String
+  IngresaEquipo: Boolean
+  PorcentajeListaNegra: Int
+  NoAcompaniantes:Int
+  TipoEstacionamiento:String
+}
+input SolicitudAccesoVisitaUpdate {
+  Oid: String!
+  VisitaA: String!
+  FechaHoraVisita: String!
+  FechaHoraFinVisita: String!
+  PersonaVisitada: String!
+  CargoPersonaVisitada: String!
+  TipoEstacionamiento:String
+}
+input SolicitudAccesoCancelarUpdate {
+  Oid: String!
+}
+
+input HistorialEntradaSalidaInput {
+  Oid: String
+  Solicitud: String!
+  Tipo: Int!
+  ManeraAcceso: Int!
+  UsuarioRegistra: String!
+  FotografiaB64: String
+  FechaHora: String
+  LugarIngreso: Int
+}
+
+input FiltroInvitadoInput {
+  Nombre: String
+  VisitaA: String
+  FechaInicio: String
+  FechaFin: String
+  Ordenar: Int
+  TipoOrden: String
+  UsuarioLogin: String
+  Offset: Int!
+  Limit: Int!
+  MisRegistros:Boolean
+  Estatus:Int
+}
+
+input FiltroListaNegraInput {
+  NombreCompleto: String
+  Offset: Int!
+  Limit: Int!
+}
+
+input FiltroBusquedaInvitadoInput {
+  palabraBuscar: String!
+  fecha: String!
+  UsuarioLogin: String!
+}
+
+
+"---- input para Solicitudes en Grupo"
+
+input FiltroInvitadoGrupoInput {
+  NombreInvitado: String
+  Activo: Boolean
+  OidGrupo: String!
+  Offset: Int!
+  Limit: Int!
+}
+
+input FiltroSolicitudesGrupoInput {
+  NombreGrupo: String
+  VisitaA: String
+  FechaInicio: String
+  FechaFin: String
+  Ordenar: Int
+  TipoOrden: String
+  Offset: Int!
+  Limit: Int!
+  MisRegistros:Boolean
+}
+input FiltroSolicitudesXGrupoInput {
+  OidGrupo: String!
+  Offset: Int!
+  Limit: Int!
+}
+input FiltroBusquedaGrupoInput {
+  palabraBuscar: String!
+  Offset: Int!
+  Limit: Int!
+}
+
+input GrupoInput {
+  Oid: String
+  Nombre: String!
+  Clave: String!
+  Responsable: String
+  Telefono: String
+  Invitados: [InvitadoGrupoInput]
+}
+
+input InvitadoGrupoInput {
+  Oid: String
+  OidInvitado: String
+  Nombres: String!
+  PrimerApellido: String!
+  SegundoApellido: String!
+  CURP: String
+  Correo: String!
+  Telefono: String!
+  Placa: String
+  Estacionamiento: String
+  Activo:Boolean
+  ActualizarEstacionamientoInvitado:Boolean
+}
+input SolicitudAccesoGrupoInput{
+  Oid: String
+  OidGrupo: String!
+  VisitaA: String!
+  Invitados: [InvitadoGrupoInput]
+  Comentario: String
+  FechaHoraVisita: String!
+  FechaHoraFinVisita: String!
+  FechaHoraSolicitud: String
+  PersonaVisitada: String!
+  CargoPersonaVisitada: String!
+  TipoVisita: String!
+  PreRegistro:Boolean
+  TipoEstacionamiento: String
+}
+
+input FiltroInvitadosGrupoInput{
+  Nombre: String
+  OidGrupoVisita: String!
+  Ordenar: Int
+  Estatus:Int
+  TipoOrden: String
+  Limit: Int!
+  Offset: Int!
+}

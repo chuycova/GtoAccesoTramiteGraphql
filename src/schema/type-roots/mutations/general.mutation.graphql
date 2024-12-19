@@ -1,0 +1,12 @@
+type Mutation {
+    #Enviar a correo por API .NET
+    api_postEnviarMail(body:postCorreoIntup): ResultCorreoApi
+    #Enviar a correo CC y CCOpor API .NET
+    api_postEnviarMailCC_CCO(body:postCorreoIntup): ResultCorreoApi
+    #Enviar a correo por API .NET
+    api_postEnviarImagen(body:postArchivoInput): ResultApi
+    #Enviar a whatsApp por API ZZ
+    api_postEnviarWhatsApp(estructura: WhatsAppIntupApi!): ResultWhatsApp
+
+    loginAcceso(correo: String!, pass: String!): ResultToken
+}

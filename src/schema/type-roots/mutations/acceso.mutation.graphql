@@ -1,0 +1,40 @@
+type Mutation{
+    "Cambiar contraseña del Usuario Acceso"
+    CambiarContraseniaUsuaroAcceso(oid: String!,pass: String!):ResultUsuarioAceeso
+    "Registrar nuevo Invitado"
+    nuevoInvitado(invitado:InvitadoInput!):Invitado
+    "Actualizar Datos de Invitado"
+    cambiarDatosInvitado(invitado:InvitadoActualizarInput!):Invitado
+    "Registrar una Solicitud de Accesos de Invitado"
+    nuevaSolicitudAcceso(solicitudAcceso: SolicitudAccesoInput!):ResultSolicitudAcceso
+    "Actualizar una Solicitud de Accesos de Invitado"
+    cambiarSolicitudAcceso(solicitudAcceso: SolicitudAccesoUpdate!):ResultSolicitudAcceso
+    "Actualizar una Solicitud de Accesos de Invitado Fecha, Hora, Autoriza"
+    cambiarSolicitudAccesoVisita(solicitudAcceso: SolicitudAccesoVisitaUpdate!):ResultSolicitudAcceso
+    "Cancelar una Solicitud de Accesos"
+    cancelarSolicitudAcceso(solicitudAcceso: SolicitudAccesoCancelarUpdate!):ResultSolicitudAcceso
+    "Registrar de Entrada o Salida"
+    nuevaEntradaSalida(entradaSalida:HistorialEntradaSalidaInput!):ResultHistoricoEntradaSalida
+    "Modificar que ya se mando Notificación al Invitado"
+    cambiarNotificado(Oid:String!):ResultEstatus
+    "Modificar la Foto del Invitado y poder adjuntar comentarios"
+    cambiarFotoObservaciones(solicitud:SolicitudUpdate!):ResultEstatus
+    
+    "Registrar nuevo Grupo con Invitados"
+    nuevoGrupo(grupo:GrupoInput!):Grupo
+    "Registrar cambios en un Grupo con Invitados"
+    actualiarGrupo(grupo:GrupoInput!):Grupo
+    "Registrar una Solicitud de Acceso en Grupo"
+    nuevaVisitaGrupo(solicitudAccesoGrupo: SolicitudAccesoGrupoInput!):ResultSolicitudAccesoGrupo
+    "Notificar a todas las Solicitudes de un Grupo que Visita (cambiar estatus de Notificado)"
+    cambiarNotificadoVisitaGrupo(Oid:String!):ResultEstatus
+    "Cancela a todas las Solicitudes de un Grupo que Visita (cambiar a Cancelado)"
+    cancelarSolicitudAccesoVisitaGrupo(Oid:String!):ResultEstatus
+    "Actualizar todas las Solicitudes de Accesos de una Visita en Grupo de (VisitaA, Fecha, Hora, Autoriza)"
+    cambiarSolicitudAccesoVisitaGrupo(solicitudAccesoVisitaGrupo:SolicitudAccesoVisitaUpdate!):ResultEstatus
+
+
+    normalizarNombreUsuario(grupo:String!):ResultEstatus
+
+    normalizarNombreListaNegra:ResultEstatus
+}

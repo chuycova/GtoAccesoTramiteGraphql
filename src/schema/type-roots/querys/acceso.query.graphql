@@ -1,0 +1,56 @@
+type Query {
+  "Todos los Usuarios (PermisionPolicyUser) que estan registrados para ser Visitados y que puede ver un Uusario de Control Acceso"
+  getPermisionPolicyUserXControlAccesos(oidUsuarioControlAcceso: String!,grupo: String!): [Usuario]
+  "Inicio de sesion con las credenciales del Usuario de Accesos"
+  getLoginUsuarioAcceso(correo: String!, pass: String!): ResultToken
+  "Busca un Usuario que tenga el correo que se manda como parametro"
+  getExisteUsuarioAcceso(correo: String!): ResultUsuarioAceeso
+  "Obtine los datos de un Solicitante (Usuario) para cambiar contraseña"
+  getUsuarioAccesoRecuperar(oid: String!): ResultToken
+  #Obtenemos los datos del Usuario por medio de TOKEN JWT
+  miPerfilUsaurioAcceso: ResultUsuarioAceeso!
+  "Lista Negra"
+  getListaNegra(filtro: FiltroListaNegraInput!): ResultListaNegra
+  getListaNegraOid(Oid:String!):ListaNegra
+  getBuscarEnListaNegra(nombreCompleto: String!): [ListaNegra]
+  "Lista de Procedencias (Institución de Origen)"
+  getProcedencias: [ResultProcedencias]
+  "Lista de Lugar Acceso"
+  getLugarAcceso: [ResultLugarAcceso]
+  "Lista de Lugar Acceso"
+  getCargo: [ResultCargo]
+  "Lista de Lugar Acceso"
+  getIdentificacion: [ResultIdentificacion]
+  "Buscar a Invitado por palabra"
+  getBuscarInvitado(filtro: FiltroBusquedaInvitadoInput): ResultBusquedaInvitado
+  getInvitadoTotalVistasFecha(invitado: String!,fecha: String!): ResultInvitadoTotalVistasFecha
+  "Traer todas las Solicitudes de los Invitados"
+  getSolicitudesAcceso(filtro: FiltroInvitadoInput): ResultSolicitudesAcceso
+  "Obtener los Datos de una solicitud"
+  getSolicitudAccesoOid(Oid:String!): ResultSolicitudAcceso
+  "Obtener las Visitas de ese hoy del Invitado"
+  getSolicitudAccesoInvitadoXHoy(Invitado:String!): [ReporteAllVisitas]
+  "Obtener los Datos de una solicitud para SABER SI ESTA ACTIVA HOY"
+  getSolicitudAccesoOidActivaHoy(Oid:String!): ResultSolicitudAcceso
+  getEstacionamiento(OidVisitaA:String!): [ResultEstacionamiento]
+  
+
+  "Solicitudes por Grupo"
+  # Traer todas las Solicitudes de los Grupos
+  getSolicitudesAccesoGrupo(filtro: FiltroSolicitudesGrupoInput): ResultSolicitudesAccesoGrupo
+  # Traer la Solicitud de un Grupo
+  getSolicitudAccesoGrupoOid(Oid:String!): ResultSolicitudAccesoGrupo
+  # Traer las Solicitudes de Acceso de los Invitados de un Grupo
+  getSolicitudesAccesoInvitadosGrupoOid(filtro: FiltroInvitadosGrupoInput): ResultSolicitudesAcceso
+  # Grupos
+  getGrupos: ResultBusquedaGrupo
+  # Grupo
+  getGrupo(Oid: String!): Grupo
+  # Visitas por Grupo
+  getVisitasXGrupo(filtro: FiltroSolicitudesXGrupoInput!): ResultSolicitudesAccesoGrupo
+  # Invitados por Grupo
+  getInvitadosXGrupoAll(filtro: FiltroInvitadoGrupoInput): ResultGrupoInvitados
+  getInvitadosXGrupo(filtro: FiltroInvitadoGrupoInput): ResultGrupoInvitados
+  # Buscar a Invitado por palabra
+  getBuscarGrupo(filtro: FiltroBusquedaGrupoInput): ResultBusquedaGrupo
+}

@@ -1,0 +1,24 @@
+input CorreoIntup{
+    From: String
+    To: String
+    Subject: String
+    Text: String
+}
+input postCorreoIntup{
+    nombreenvia: String
+    titulo: String
+    cuerpohtml: String
+    destinatarios:  [postDestinoIntup]
+    destinatariosOculto:  [postDestinoIntup]
+    password: String
+    Adjuntos: [postArchivosBase64Intup]
+}
+
+input postArchivosBase64Intup{
+    FileName: String
+    ArchivoB64: String
+}
+input postDestinoIntup{
+    Nombre: String
+    Correo: String
+}

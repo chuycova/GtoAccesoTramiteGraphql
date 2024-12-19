@@ -1,0 +1,19 @@
+type Mutation{
+    # "Nuevo Usuario (Solicitante), con los datos requeridos de Solitantes"
+    # NuevoSolicitante(solicitante:SolicitanteInput):ResultUser
+    # "Actualizar información del Sokslicitante"
+    # ActualizarSolicitante(solicitante:SolicitanteUpdate):ResultToken
+    
+    "Nuevo Solicitud de Cita del Invitado"
+    NuevaSolicitudCita(solicitud:SolicitudInput!):ResultCita
+    ConfirmarSolicitudCita(solicitud:SolicitudInput!):ResultCita
+    ActualizarSolicitudCitaNoConfirmada(solicitud:SolicitudInput!):ResultCita
+
+
+    # "Cancelar Solicitud de Vista del Solicitante"
+    # CancelarSolicitud(Oid:String!, Motivo:String!):ResultSolicitud
+    # "Cambiar contraseña del Solicitante"
+    # CambiarContraseniaSolicitud(oid: String!,pass: String!):ResultUser
+    # #Dar de Baja Suscripción 
+    # BajaSuscripcion(usuarioVisita: String!,suscriptor: String!):ResultUser
+}

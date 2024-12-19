@@ -1,0 +1,47 @@
+#Respuesta de servicio de Oscar Omar
+type ResultSolicitudCitaGTO{
+  estado: Int
+  estadoDescripcion: String
+  error: Int
+  errorDesc: String
+  citaId: String
+  qr: String
+}
+
+#Respuesta de Solicitud
+type ResultSolicitudAccesoGTO{
+  status:Boolean
+  modificado:Boolean
+  vencido:Boolean
+  mensaje:String
+  solicitud: SolicitudGTO
+}
+type SolicitudGTO{
+  Oid: String
+  OidTipoVisita:Int
+  TipoVisita:String
+  VisitaA:String
+  OidInvitado: String
+  NombreInvitado: String
+  Nombres: String
+  PrimerApellido: String
+  SegundoApellido: String
+  CURP: String
+  UrlFoto: String
+  CorreoInvitado: String
+  TelefonoInvitado: String
+  OidSede: String
+  Sede: String
+  OidDependencia: String
+  Dependencia: String
+  FechaHoraVisita: String
+  FechaHoraFinVisita: String
+  Placas: String
+  MarcaVehicular: String
+  ModeloVehicular: String
+  ColorVehicular: String
+  TipoEstacionamientoDeDiscapacidad: Boolean
+  FechaHoraSolicitud: String
+  ModificadoPorInvitado: Boolean
+  FechaModificadoPorInvitado: String
+}

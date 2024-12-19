@@ -1,0 +1,56 @@
+
+"---- input para Solicitudes desde GTO"
+
+input SolicitudCitaGTO {
+  solicitud:String
+  solicitudId: Int
+  uuid: String
+  sucursalGuid: String #Me llegara un Texto validar
+  personaFotografia: String
+  solicitudTramite: SolicitudCitaGTO_Tramite
+  solicitudConCita: Boolean
+  actualizarSolicitud: Boolean
+  solicitudEsTramite: Boolean
+  solicitudTipo: Int
+  solicitudCancelada: Int #1-Si, 0-No
+  solicitudFecha: String
+  solicitudEmail: String
+  solicitudTelefono: String
+  solicitudEsDiscapacitado: Int #1-Si, 0-No
+  solicitudFechaCita: String
+  solicitudFechaCitaTermina: String
+  personaNombre: String
+  personaCurp: String
+  personaPuesto: String
+  solicitudUsuario: Int
+  solicitudTramiteNombre: Int
+  solicitudPlacaVehicular: String
+  solicitudVehiculoColor: String
+  solicitudVehiculoModelo: String
+  solicitudVehiculoMarca: String
+  solicitudPlacaCheck: Int
+  ouuid: String #Oid de Solicitud de Control Acceso
+  dependenciaNombre: String   # Creare la dependencia si no la encuentro
+  solicitudHoraCitaInicia: String
+  solicitudHoraCitaTermina: String
+  acompanantes: String
+  version: String
+}
+
+input SolicitudCitaGTO_Tramite {
+  tramiteSincronizar: Boolean
+  tramiteTipo: Int
+  tramiteVentanillaNumero: String
+  tramiteHorario: String
+  tramiteUbicacion: String
+}
+
+
+input SolicitudAccesoGTOUpdate {
+  Oid: String!
+  Placa: String
+  Marca: String
+  Modelo: String
+  Color: String
+  ConDiscapacidad: Boolean
+}

@@ -1,0 +1,68 @@
+type ResultUser {
+  status: Boolean!
+  message: String!
+  user: Solicitante
+}
+
+type ResultToken {
+  status: Boolean!
+  message: String!
+  token: String
+}
+
+type ResultEntidadFederativa {
+  Oid: String
+  Nombre: String
+}
+
+type ResultDiasInhabiles {
+  Oid: String
+  Titulo: String
+  Dia: Int
+  Mes: Int
+  Anio: Int
+  PorAnio: Boolean
+}
+
+type ResultSexos {
+  Oid: String
+  Nombre: String
+}
+
+type ResultTipoVisita{
+  OID: Int
+  Nombre: String
+  Descripcion: String
+}
+
+type ResultFechaHora {
+  FechaHora:String
+  Fecha: String
+  Hora: String
+  Zona: String
+}
+
+
+type ResultConfiguracionCorreo {
+  Oid: String
+  TituloAceptacion: String
+  NombreEnvia: String
+  TextoString: String
+  TextoBoton: String
+  UrlDestino: String
+}
+
+type ResultCorreo {
+  status: Boolean!
+  message: String!
+}
+type ResultWhatsApp {
+  status: Boolean!
+  message: String!
+}
+type ResultCorreoApi{
+  Exitosa: Boolean
+  Mensaje: String
+  TransaccionId:String
+  TransaccionIdInt: Int
+}

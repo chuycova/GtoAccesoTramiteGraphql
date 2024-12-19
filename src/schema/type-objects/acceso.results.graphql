@@ -1,0 +1,350 @@
+type ResultEstatus {
+  status: Boolean!
+  message: String!
+}
+
+type ResultUsuarioAceeso {
+  status: Boolean!
+  message: String!
+  user: UsuarioAceeso
+}
+
+type ResultBusquedaInvitado {
+  status: Boolean!
+  message: String!
+  invitados: [Invitado]
+}
+
+type ResultHistoricoEntradaSalida {
+  Oid: String
+  Solicitud: String
+  NombreInvitado: String
+  Tipo: String
+  UsuarioRegistra: String
+  NombreUsuarioRegistra: String
+  FotografiaB64: String
+  FechaHora: String
+}
+
+type ResultInvitadoTotalVistasFecha {
+  Oid: String
+  FechaVisita: String
+  TotalVisitasHoy: String
+  HistorialES: [HistorialEntradasSalidasInvitado]
+}
+
+type HistorialEntradasSalidasInvitado{
+  FechaUltimaHoraEntrada: String
+  FechaUltimaHoraSalida: String
+}
+
+type ResultSolicitudesAcceso {
+  status: Boolean!
+  totalRegistros: Int
+  totalRegistrosPorUsuario: Int
+  paginas: Int
+  solicitudes: [ResultSolicitudAcceso]
+}
+
+type ResultSolicitudAcceso {
+  Oid: String
+  OidTipoVisita:Int
+  TipoVisita:String
+  OidTipoEstacionamiento:String
+  TipoEstacionamiento:String
+  TipoEstacionamientoBase64:String
+  Placa: String
+  MarcaVehicular: String
+  ModeloVehicular: String
+  ColorVehicular: String
+  CURP: String
+  Asunto: String
+  Activa: Boolean
+  FechaHoraVisita: String
+  FechaHoraFinVisita: String
+  FechaHoraAceptacion: String
+  FechaHoraSolicitud: String
+  OidVisitaA:String
+  VisitaA: String
+  CorreoVisitaA: String
+  EdificioUbicacion: String
+  ExtensionTelefonica: String
+  Departamento: String
+  Posicion: String
+  Oficina: String
+  Edificio: String
+  Sede: String
+  SedeDireccion: String
+  Dependencia: String
+  OidInvitado: String
+  NombreInvitado: String
+  CorreoInvitado: String
+  Sexo: String
+  Telefono: String
+  Procedencia: String
+  NumeroTarjeta: String
+  FotografiaB64: String
+  OidRegistradoPor: String
+  RegistraEnVentanilla: String
+  Notificado: Boolean
+  HistorialEntradaSalida: HistorialEntradaSalida
+  TotalVisitas: Int
+  TotalVisitasHoy: Int
+  PersonaVisitada: String
+  CargoPersonaVisitada: String
+  MedioIdentificacion: String
+  IngresaEquipo: Boolean
+  Legislacion: String
+  PorcentajeListaNegra: Int
+  EsPreregistro: Boolean
+  PorCita: Boolean
+  OidPersonaModifica: String
+  PersonaModifica: String
+  PrimerApellido: String
+  SegundoApellido: String
+  Nombres: String
+  OidSexo: String
+  OidMedioIdentificacion: String
+  EntradaSalida: Int
+  FechaUltimaHoraEntrada: String
+  FechaUltimaHoraSalida: String
+  NoAcompaniantes:Int
+  SolicitudPrincipal: String
+}
+
+type ResultListaNegra {
+  status: Boolean!
+  totalExcepciones: Int
+  paginas: Int
+  excepciones: [ListaNegra]
+}
+
+type ListaNegra {
+  Oid: String
+  NombreInvitado: String
+  Nombres: String
+  PrimerApellido: String
+  SegundoApellido: String
+  OidSexo: String
+  Sexo: String
+  Restriccion: String
+  Procedencia: String
+  PersonaVisitada: String
+  Cargo: String
+  FechaBloqueo: String
+  MotivoBloqueo: String
+  Oficio: String
+  UrlOficio: String
+  MotivoFavor: String
+  Activo: Boolean
+  ActivoString: String
+  TotalPorcentaje: Int
+}
+
+type ResultProcedencias {
+  Nombre: String
+}
+
+type ResultLugarAcceso {
+  OID: Int
+  Nombre: String
+}
+
+type ResultCargo {
+  Oid: String
+  Nombre: String
+}
+
+type ResultIdentificacion {
+  Oid: String
+  Nombre: String
+}
+
+#Entidades de Acceso
+type UsuarioAceeso {
+  Oid: String!
+  Nombres: String
+  PrimerApellido: String
+  SegundoApellido: String
+  NombreUsuarioAcceso: String
+  CambiarContrasenia: Boolean
+  CopiaCita:Boolean
+  Correo: String
+  Contrasenia: String
+  Activo: Boolean
+  Roles: String
+  RolesArray: [Int]
+  OidLugarIngreso: Int
+  LugarIngreso: String
+  VerTodosUsuariosXAF: String
+  Permisos: [Int]
+}
+
+# type Permiso {
+#   OID: Int!
+#   # Nombre: String!
+# }
+# type Rol {
+#   OID: Int!
+#   # Nombre: String!
+# }
+
+type Invitado {
+  Oid: String
+  NombreInvitado: String
+  Nombres: String
+  PrimerApellido: String
+  SegundoApellido: String
+  OidSexo: String
+  Sexo: String
+  Procedencia: String
+  Correo: String
+  Telefono: String
+  FotografiaB64: String
+  FechaCreacion: String
+  Bloqueado: Boolean
+  FechaBloqueo: String
+  MotivoBloqueo: String
+  Oficio: String
+  TotalVisitas: Int
+  TotalVisitasHoy: Int
+  OidVisitaA: String
+  VisitaA: String
+  PersonaVisitada: String
+  OidCargoPersonaVisitada: String
+  CargoPersonaVisitada: String
+  OidMedioIdentificacion: String
+  MedioIdentificacion: String
+  CURP:String
+  OidTipoVisita:String
+  TipoVisita:String
+  OidTipoEstacionamiento:String
+  TipoEstacionamiento:String
+  PlacaInvitado:String
+  Placa:String
+  MarcaVehicular:String
+  ModeloVehicular:String
+  ColorVehicular:String
+}
+
+type HistorialEntradaSalida {
+  Solicitud: String
+  Entradas: [Movimiento]
+  Salidas: [Movimiento]
+}
+type Movimiento {
+  Oid: String
+  Solicitud: String
+  IdTipo: Int
+  Tipo: String
+  UsuarioRegistra: String
+  FechaHora: String
+  OidLugarIngreso: Int
+  LugarIngreso: String
+}
+type ResultEstacionamiento {
+  Oid: String
+  Nombre: String
+  ClaveZZ: String
+  ImagenBase64: String
+}
+
+
+
+"------ Result para Solicitudes en Grupo"
+
+type ResultBusquedaGrupo {
+  status: Boolean!
+  message: String!
+  grupos: [Grupo]
+  totalRegistros: Int
+  paginas: Int
+}
+
+type Grupo {
+  Oid: String
+  Nombre: String
+  Clave: String
+  Responsable:String
+  Telefono:String
+  OidDependencia:String
+  Dependencia:String
+  OidSedeDependencia:String
+  Sede:String
+  OidUsuarioRegistra: String
+  UsuarioRegistra: String
+  Activo:Boolean
+  NumIntegrantes: Int
+  NumIntegrantesActivos: Int
+  FechaCreacion: String
+}
+
+type ResultGrupoInvitados{
+  status: Boolean!
+  totalRegistros: Int
+  totalRegistrosPorUsuario: Int
+  paginas: Int
+  invitados: [GrupoInvitados]
+}
+
+type GrupoInvitados{
+  Oid: String
+  OidInvitado: String
+  NombreInvitado: String
+  Nombres: String
+  PrimerApellido: String
+  SegundoApellido: String
+  OidSexo: String
+  Sexo: String
+  CorreoInvitado: String
+  Telefono: String
+  CURP:String
+  Placa:String
+  TipoEstacionamiento:String
+  OidTipoEstacionamiento:String
+  OidUsuarioRegistra: String
+  UsuarioRegistra: String
+  Activo: Boolean
+}
+
+type ResultSolicitudesAccesoGrupo {
+  status: Boolean!
+  totalRegistros: Int
+  totalRegistrosPorUsuario: Int
+  paginas: Int
+  solicitudes: [ResultSolicitudAccesoGrupo]
+}
+
+type ResultSolicitudAccesoGrupo {
+  Oid: String
+  TipoVisita:Int
+  Comentarios: String
+  FechaHoraVisita: String
+  FechaHoraFinVisita: String
+  FechaCreacion: String
+  VisitaA: String
+  CorreoVisitaA: String
+  EdificioUbicacion: String
+  ExtensionTelefonica: String
+  Departamento: String
+  Posicion: String
+  Oficina: String
+  Edificio: String
+  Sede: String
+  SedeDireccion: String
+  Dependencia: String
+  OidGrupo: String
+  NombreGrupo: String
+  ResponsableGrupo: String
+  TelefonoGrupo: String
+  Procedencia: String
+  OidRegistradoPor: String
+  UsuarioRegistra: String
+  Notificado: Boolean
+  TotalSolicitudes: Int
+  TotalVisitas: Int
+  TotalVisitasHoy: Int
+  EsPreregistro: Boolean
+  TipoEstacionamiento:String
+  OidTipoEstacionamiento:String
+}

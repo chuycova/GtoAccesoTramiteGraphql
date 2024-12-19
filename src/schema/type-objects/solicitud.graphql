@@ -1,0 +1,24 @@
+type Solicitud{
+    Oid: String
+    VisitaA: String
+    TipoVisita: String
+    DescripcionTipoVisita: String
+    Solicitante: String
+    FechaHoraVisita: String
+    Asunto: String
+    Estatus: String
+    FechaHoraAceptacion: String
+    EntidadFederativa: String
+    Institucion: String
+    NumeroVisitantes: String
+    MotivoCancelacion:String
+    CancelacionValida:Boolean
+}
+
+type Cita{
+    FechaVisita: String
+    MasDeMitad: Boolean
+    Lleno: Boolean
+    Total: Int
+    Cantidad: Int
+}

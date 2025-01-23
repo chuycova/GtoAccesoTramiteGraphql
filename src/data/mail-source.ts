@@ -9,7 +9,7 @@ export class MailAPI{
   async envioMail(body: any): Promise<any> {
     try {
       const response = await axios.post(
-        `${this.baseURL}api/apiMailEnvioMail/`,
+        `${this.baseURL}api/apiMail/SendMail/`,
         body
       );
       return response.data;

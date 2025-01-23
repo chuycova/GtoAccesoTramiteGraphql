@@ -32,8 +32,6 @@ export const get_ReporteSolicitudAcceso = ` SELECT
      s."FotografiaB64",
      s."Notificado",
      concat(ua."Nombres",' ',ua."PrimerApellido",' ', ua."SegundoApellido") as "NombreCompletoRegistra",
-     l."Romano" as "NumeroRomano",
-     l."Numero" as "NumeroLegislatura",
      ci."Nombre" as "TipoIdentificacion",
      s."PersonaVisitada",
      s."IngresaEquipo",
@@ -53,7 +51,6 @@ export const get_ReporteSolicitudAcceso = ` SELECT
    INNER JOIN "Invitado" i ON i."Oid" = s."Invitado" AND i."GCRecord" IS NULL
    LEFT JOIN "CatalogoSexo" cs ON cs."Oid" = i."Sexo" AND cs."Activo" is true AND cs."GCRecord" IS null
    LEFT JOIN "UsuarioAcceso" ua ON ua."Oid" = s."RegistraEnVentanilla" AND ua."Activo" is true AND ua."GCRecord" IS null
-   LEFT JOIN "Legislacion" l ON l."Oid" = s."Legislacion"  AND l."GCRecord" IS null
    LEFT JOIN "CatalogoIdentificacion" ci ON ci."Oid" = s."MedioIdentificacion"  AND ci."GCRecord" IS null
    LEFT JOIN "CatalogoPosicion" cps ON cps."Oid" = s."CargoPersonaVisitada" AND cp."Activo" is true AND cp."GCRecord" IS NULL
    WHERE s."GCRecord" IS null
@@ -267,8 +264,6 @@ export const get_CalendarioSolicitudPorDias = (fecha: any) => {
     i."Telefono",
     s."Notificado",
     concat(ua."Nombres",' ',ua."PrimerApellido",' ', ua."SegundoApellido") as "NombreCompletoRegistra",
-    l."Romano" as "NumeroRomano",
-    l."Numero" as "NumeroLegislatura",
     ci."Nombre" as "TipoIdentificacion",
     s."PersonaVisitada",
     s."IngresaEquipo",
@@ -290,7 +285,6 @@ export const get_CalendarioSolicitudPorDias = (fecha: any) => {
   INNER JOIN "Invitado" i ON i."Oid" = s."Invitado" AND i."GCRecord" IS NULL
   LEFT JOIN "CatalogoSexo" cs ON cs."Oid" = i."Sexo" AND cs."Activo" is true AND cs."GCRecord" IS null
   LEFT JOIN "UsuarioAcceso" ua ON ua."Oid" = s."RegistraEnVentanilla" AND ua."Activo" is true AND ua."GCRecord" IS null
-  LEFT JOIN "Legislacion" l ON l."Oid" = s."Legislacion"  AND l."GCRecord" IS null
   LEFT JOIN "CatalogoIdentificacion" ci ON ci."Oid" = s."MedioIdentificacion"  AND ci."GCRecord" IS null
   LEFT JOIN "CatalogoPosicion" cps ON cps."Oid" = s."CargoPersonaVisitada" AND cp."Activo" is true AND cp."GCRecord" IS NULL
   WHERE s."GCRecord" IS null and s."FechaHoraVisita"::date = '${fecha}'  
@@ -424,8 +418,6 @@ export const get_ReporteSinSalidasXFecha = (
        s."FotografiaB64",
        s."Notificado",
        concat(ua."Nombres",' ',ua."PrimerApellido",' ', ua."SegundoApellido") as "NombreCompletoRegistra",
-       l."Romano" as "NumeroRomano",
-       l."Numero" as "NumeroLegislatura",
        ci."Nombre" as "TipoIdentificacion",
        s."PersonaVisitada",
        s."IngresaEquipo",
@@ -446,7 +438,6 @@ export const get_ReporteSinSalidasXFecha = (
      INNER JOIN "Invitado" i ON i."Oid" = s."Invitado" AND i."GCRecord" IS NULL
      LEFT JOIN "CatalogoSexo" cs ON cs."Oid" = i."Sexo" AND cs."Activo" is true AND cs."GCRecord" IS null
      LEFT JOIN "UsuarioAcceso" ua ON ua."Oid" = s."RegistraEnVentanilla" AND ua."Activo" is true AND ua."GCRecord" IS null
-     LEFT JOIN "Legislacion" l ON l."Oid" = s."Legislacion"  AND l."GCRecord" IS null
      LEFT JOIN "CatalogoIdentificacion" ci ON ci."Oid" = s."MedioIdentificacion"  AND ci."GCRecord" IS null
      LEFT JOIN "CatalogoPosicion" cps ON cps."Oid" = s."CargoPersonaVisitada" AND cp."Activo" is true AND cp."GCRecord" IS null
      left JOIN "HistorialEntradaSalida" hes ON hes."Solicitud" = s."Oid"  AND hes."GCRecord" IS NULL
@@ -510,8 +501,6 @@ export const get_ReporteCalendarioSimple = (fecha: any) => {
     i."Telefono",
     s."Notificado",
     concat(ua."Nombres",' ',ua."PrimerApellido",' ', ua."SegundoApellido") as "NombreCompletoRegistra",
-    l."Romano" as "NumeroRomano",
-    l."Numero" as "NumeroLegislatura",
     ci."Nombre" as "TipoIdentificacion",
     s."PersonaVisitada",
     s."IngresaEquipo",
@@ -537,7 +526,6 @@ export const get_ReporteCalendarioSimple = (fecha: any) => {
   INNER JOIN "Invitado" i ON i."Oid" = s."Invitado" AND i."GCRecord" IS NULL
   LEFT JOIN "CatalogoSexo" cs ON cs."Oid" = i."Sexo" AND cs."Activo" is true AND cs."GCRecord" IS null
   LEFT JOIN "UsuarioAcceso" ua ON ua."Oid" = s."RegistraEnVentanilla" AND ua."Activo" is true AND ua."GCRecord" IS null
-  LEFT JOIN "Legislacion" l ON l."Oid" = s."Legislacion"  AND l."GCRecord" IS null
   LEFT JOIN "CatalogoIdentificacion" ci ON ci."Oid" = s."MedioIdentificacion"  AND ci."GCRecord" IS null
   LEFT JOIN "CatalogoPosicion" cps ON cps."Oid" = s."CargoPersonaVisitada" AND cp."Activo" is true AND cp."GCRecord" IS NULL
   WHERE s."GCRecord" IS null and s."FechaHoraVisita"::date = '${fecha}'  

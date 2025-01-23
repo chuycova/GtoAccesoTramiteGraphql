@@ -551,7 +551,6 @@ export const get_SolicitudAccesoOid = (oid: String) => {
     cis."Oid" AS "OidMedioIdentificacion",
     s."NumeroTarjeta",
     s."IngresaEquipo",
-    l."Romano" AS "Legislacion",
     u."Correo" AS "CorreoVisitaA",
     u."EdificioUbicacion",
     u."ExtensionTelefonica",
@@ -597,7 +596,6 @@ export const get_SolicitudAccesoOid = (oid: String) => {
   LEFT JOIN "UsuarioAcceso" uap ON uap."Oid" = s."PersonaModifica"
   LEFT JOIN "CatalogoPosicion" cps ON cps."Oid" = s."CargoPersonaVisitada" AND cps."Activo" is true AND cps."GCRecord" IS NULL
   LEFT JOIN "CatalogoIdentificacion" cis ON cis."Oid" = s."MedioIdentificacion" AND cis."Activo" is true AND cis."GCRecord" IS NULL
-  LEFT JOIN "Legislacion" l ON l."Oid" = s."Legislacion" AND l."GCRecord" IS NULL
   INNER JOIN "Usuario" u ON u."Oid" = s."VisitaA"
   INNER JOIN "PermissionPolicyUser" ppu ON ppu."Oid" = u."Oid"
   LEFT JOIN "CatalogoDepartamento" cd ON cd."Oid" = u."Departamento" AND cd."Activo" is true AND cd."GCRecord" IS NULL
@@ -648,8 +646,6 @@ export const get_SolicitudAccesoInvitadoXHoy = (invitado: String) => {
   s."FotografiaB64",
   s."Notificado",
   concat(ua."Nombres",' ',ua."PrimerApellido",' ', ua."SegundoApellido") as "NombreCompletoRegistra",
-  l."Romano" as "NumeroRomano",
-  l."Numero" as "NumeroLegislatura",
   ci."Nombre" as "TipoIdentificacion",
   s."PersonaVisitada",
   s."IngresaEquipo",
@@ -669,7 +665,6 @@ LEFT JOIN "CatalogoEdificio" ce ON ce."Oid" = u."Edificio" AND ce."Activo" is tr
 INNER JOIN "Invitado" i ON i."Oid" = s."Invitado" AND i."GCRecord" IS NULL
 LEFT JOIN "CatalogoSexo" cs ON cs."Oid" = i."Sexo" AND cs."Activo" is true AND cs."GCRecord" IS null
 LEFT JOIN "UsuarioAcceso" ua ON ua."Oid" = s."RegistraEnVentanilla" AND ua."Activo" is true AND ua."GCRecord" IS null
-LEFT JOIN "Legislacion" l ON l."Oid" = s."Legislacion"  AND l."GCRecord" IS null
 LEFT JOIN "CatalogoIdentificacion" ci ON ci."Oid" = s."MedioIdentificacion"  AND ci."GCRecord" IS null
 LEFT JOIN "CatalogoPosicion" cps ON cps."Oid" = s."CargoPersonaVisitada" AND cp."Activo" is true AND cp."GCRecord" IS NULL
 WHERE s."GCRecord" IS null

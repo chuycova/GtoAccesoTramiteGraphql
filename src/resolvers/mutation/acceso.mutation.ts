@@ -37,7 +37,7 @@ import {
 import { get_ListaNegra } from "../../constants/acceso-lista-negra-db-operations";
 import { get_PermisionPolicyUser } from "../../constants/db-operations";
 import { add_PlacasInvitado, add_PlacasInvitadoXVisita, get_ConfiguracionCorreo, update_ConfirmarCita } from "../../constants/tramite-cita-db-operations";
-import { ApiWelcome } from "../../data/envio-cita-app";
+// import { ApiWelcome } from "../../data/envio-cita-app";
 import { MailAPI } from "../../data/mail-source";
 import { NoSqlInyection } from "../../lib/RemplazarSQL";
 import JWT from "../../lib/jwt";
@@ -46,7 +46,7 @@ import { Utils } from "../../lib/utils";
 import { ApiArchivos } from "../../utils/api-archivos";
 import { NotificionVisita } from "../../utils/notificacion-visita";
 const _ApiEnviarArchivo = new ApiArchivos();
-const _ApiWelcome = new ApiWelcome();
+// const _ApiWelcome = new ApiWelcome();
 var noSqlInyection = new NoSqlInyection();
 
 const mutationAcceso = {
@@ -258,6 +258,7 @@ const mutationAcceso = {
               actualizarSolicitud:false,
               cancelarSolicitud: false
             };
+            /*
             const response = await _ApiWelcome.api_cita_solicitud(body);
             if(response.error == 0){
 
@@ -274,7 +275,7 @@ const mutationAcceso = {
 
               // let eventQueryApi = update_ConfirmarCita(res.Oid,4);
               // let resApi = await psql.oneOrNone(eventQueryApi);
-            }
+            }*/
           } catch (error) {
             // console.log(error)
 
@@ -366,6 +367,7 @@ const mutationAcceso = {
                   actualizarSolicitud:false,
                   cancelarSolicitud: false
                 };
+                /*
                 const response = await _ApiWelcome.api_cita_solicitud(body);
                 if(response.error == 0){
                   ///Rgistrar en tabla teporal
@@ -376,6 +378,7 @@ const mutationAcceso = {
                   // let eventQueryApi = update_ConfirmarCita(res.Oid,4);
                   // let resApi = await psql.oneOrNone(eventQueryApi);
                 }
+                */
               } catch (error) {
                 // console.log(error)
       
@@ -469,6 +472,7 @@ const mutationAcceso = {
           actualizarSolicitud:true,
           cancelarSolicitud: false
         };
+        /*
         const response = await _ApiWelcome.api_cita_solicitud(body);
         if(response.error == 0){
 
@@ -486,6 +490,7 @@ const mutationAcceso = {
           // let eventQueryApi = update_ConfirmarCita(res.Oid,4);
           // let resApi = await psql.oneOrNone(eventQueryApi);
         }
+        */
       } catch (error) {
 
         // let eventQueryApi = update_ConfirmarCita(res.Oid,4);
@@ -548,6 +553,7 @@ const mutationAcceso = {
           actualizarSolicitud:false,
           cancelarSolicitud: true
         };
+        /*
         const response = await _ApiWelcome.api_cita_solicitud(body);
         if(response.error == 0){
 
@@ -565,6 +571,7 @@ const mutationAcceso = {
           // let eventQueryApi = update_ConfirmarCita(res.Oid,4);
           // let resApi = await psql.oneOrNone(eventQueryApi);
         }
+        */
       } catch (error) {
         // console.log(error)
 
@@ -666,6 +673,7 @@ const mutationAcceso = {
             actualizarSolicitud:true,
             cancelarSolicitud: false
           };
+          /*
           const response = await _ApiWelcome.api_cita_solicitud(body);
           if(response.error == 0){
   
@@ -683,6 +691,7 @@ const mutationAcceso = {
             // let eventQueryApi = update_ConfirmarCita(res.Oid,4);
             // let resApi = await psql.oneOrNone(eventQueryApi);
           }
+          */
         } catch (error) {
           // console.log(error)
   
@@ -1218,6 +1227,7 @@ async function mandarApiZZGrupo(datos:any,psql:any){
       actualizarSolicitud: datos.Actualizar,
       cancelarSolicitud: datos.Cancelar
     };
+    /*
     const response = await _ApiWelcome.api_cita_solicitud(body);
     if(response.error == 0){
 
@@ -1234,6 +1244,7 @@ async function mandarApiZZGrupo(datos:any,psql:any){
       let eventQueryApi = update_ConfirmarCita(datos.OidSolicitud,4);
       let resApi = await psql.oneOrNone(eventQueryApi);
     }
+    */
   } catch (error) {
     let eventQueryApi = update_ConfirmarCita(datos.OidSolicitud,4);
     let resApi = await psql.oneOrNone(eventQueryApi);

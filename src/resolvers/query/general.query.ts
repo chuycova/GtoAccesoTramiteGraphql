@@ -4,7 +4,7 @@ import {
   get_PermisionPolicyUser,
   get_Sexo,
 } from "../../constants/db-operations";
-import { ApiWelcome } from "../../data/envio-cita-app";
+// import { ApiWelcome } from "../../data/envio-cita-app";
 import { MailService } from "../../data/mail-send";
 
 const _mailService = new MailService();

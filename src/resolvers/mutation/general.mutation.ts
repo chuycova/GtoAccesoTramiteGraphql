@@ -1,12 +1,12 @@
 import { get_LoginUsuarioAccesoInactivo, get_TiempoToken } from "../../constants/acceso-db-operations";
 import { getLoginAcceso } from "../../constants/db-operations";
-import { ApiWelcome } from "../../data/envio-cita-app";
+// import { ApiWelcome } from "../../data/envio-cita-app";
 import { MailAPI } from "../../data/mail-source";
 import { NoSqlInyection } from "../../lib/RemplazarSQL";
 import JWT from "../../lib/jwt";
 import { ApiArchivos } from "../../utils/api-archivos";
 
-const _ApiWelcome = new ApiWelcome();
+// const _ApiWelcome = new ApiWelcome();
 const _ApiEnviarArchivo = new ApiArchivos();
 const _ApiMail = new MailAPI();
 var noSqlInyection = new NoSqlInyection();
@@ -106,10 +106,12 @@ const mutationGeneral = {
         adjuntos: estructura.Adjuntos,
         tipo: estructura.Tipo,
       };
+      /*
       const response = await _ApiWelcome.api_whatsApp_cita_solicitud(body);
       if(response==''){
         return { status: true, message: "WhatsApp Enviado" };
       }
+      */
       return { status: false, message: "WhatsApp Error" };
     },
   },

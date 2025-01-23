@@ -2,7 +2,7 @@ import { ApiWelcome } from "../data/envio-cita-app";
 import { MailAPI } from "../data/mail-source";
 
 const _ApiMail = new MailAPI();
-const _ApiWelcome = new ApiWelcome();
+// const _ApiWelcome = new ApiWelcome();
 
 export class NotificionVisita {
   constructor() {}
@@ -216,10 +216,10 @@ export class NotificionVisita {
         tipo: 4,
       };
       try {
-        const response = await _ApiWelcome.api_whatsApp_cita_solicitud(body);
+        /*const response = await _ApiWelcome.api_whatsApp_cita_solicitud(body);
         if (response == "") {
           return { status: true, message: "WhatsApp Enviado" };
-        }
+        }*/
         return { status: false, message: "WhatsApp Error" };
       } catch (error: any) {
         return { status: false, message: error };

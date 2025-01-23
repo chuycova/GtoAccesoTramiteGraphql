@@ -7,9 +7,9 @@ import {
   update_HorarioCita,
   update_SolicitudCita,
 } from "../../constants/tramite-cita-db-operations";
-import { ApiWelcome } from "../../data/envio-cita-app";
+// import { ApiWelcome } from "../../data/envio-cita-app";
 
-const _ApiWelcome = new ApiWelcome();
+// const _ApiWelcome = new ApiWelcome();
 
 const mutationTramiteCita = {
   Mutation: {
@@ -146,6 +146,7 @@ const mutationTramiteCita = {
               acompanantes:0,
               actualizarSolicitud:false
             };
+            /*
             const response = await _ApiWelcome.api_cita_solicitud(body);
             if(response.error == 0){
 
@@ -170,6 +171,12 @@ const mutationTramiteCita = {
                 message: "Error en API"
               };
             }
+            */
+            return {
+              status: true,
+              message: "Cita Exitosa",
+              cita: res
+            };
           } catch (error) {
             let eventQuery = update_ConfirmarCita(solicitud.Oid,0);
             let res = await psql.oneOrNone(eventQuery);

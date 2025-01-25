@@ -253,7 +253,7 @@ export const get_BuscarInvitado = (palabraBusqueda: string, fecha: string,condic
       FROM "Invitado" i
       LEFT JOIN "CatalogoSexo" cs ON cs."Oid" = i."Sexo" AND cs."Activo" is true AND cs."GCRecord" IS NULL
       LEFT JOIN "Solicitud" s ON s."Invitado" = i."Oid"
-      LEFT JOIN (SELECT s1."Invitado",count(s1."Oid") AS "TotalVisitas" ,max(s1."FechaHoraSolicitud") AS "FechaHoraSolicitud" FROM "Solicitud" s1 WHERE s1."GCRecord" IS NULL GROUP BY s1."Invitado") ultimo_s ON s."Invitado" = ultimo_s."Invitado" 
+      LEFT JOIN (SELECT s1."Invitado",count(s1."Oid") AS "TotalVisitas" ,max(s1."FechaHoraSolicitud") AS "FechaHoraSolicitud" FROM "Solicitud" s1 WHERE s1."GCRecord" IS NULL GROUP BY s1."Invitado") ultimo_s ON s."Invitado" = ultimo_s."Invitado" AND s."FechaHoraSolicitud"=ultimo_s."FechaHoraSolicitud"
       LEFT JOIN "CatalogoEstacionamiento" e ON e."Oid" = s."Estacionamiento"
       LEFT JOIN "Catalogo_TipoVisita" ctv ON ctv."OID" = s."TipoVisita"
       LEFT JOIN "CatalogoPosicion" cps ON cps."Oid" = s."CargoPersonaVisitada" AND cps."Activo" is true AND cps."GCRecord" IS NULL
@@ -264,7 +264,6 @@ export const get_BuscarInvitado = (palabraBusqueda: string, fecha: string,condic
         i."Correo" ILIKE '%${palabraBusqueda}%' OR i."Telefono" ILIKE '%${palabraBusqueda}%' OR 
       TRANSLATE(CONCAT(i."Nombres",' ',i."PrimerApellido",' ',i."SegundoApellido"),'ÁÉÍÓÚáéíóú','AEIOUaeiou') ILIKE '%${util.removeAccents(palabraBusqueda)}%')
       ${condicionRol3}
-      AND s."FechaHoraSolicitud"=ultimo_s."FechaHoraSolicitud"
       AND i."GCRecord" IS NULL;`;
   return query;
 };

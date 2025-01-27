@@ -588,7 +588,11 @@ export const get_SolicitudAccesoOid = (oid: String) => {
         (SELECT COUNT(*) 
             FROM "Solicitud" sv 
             WHERE sv."Invitado" = i."Oid" ) AS "TotalVisitas",
-    s."SolicitudPrincipal"
+    s."SolicitudPrincipal",
+    s."Contacto",
+    s."CorreoContacto",
+    s."TelefonoContacto",
+    s."ExtensionContacto"
   FROM "Solicitud" s
   LEFT JOIN "CatalogoEstacionamiento" e ON e."Oid" = s."Estacionamiento"
   LEFT JOIN "Catalogo_TipoVisita" ctv ON ctv."OID" = s."TipoVisita"
@@ -958,7 +962,11 @@ export const get_SolicitudAccesoGrupoOid = (Oid:string) => {
     d."Oid" AS "OidDependencia",
     d."Titulo" AS "Dependencia",
     gv."Estacionamiento" AS "OidTipoEstacionamiento",
-    e."Nombre" AS "TipoEstacionamiento"
+    e."Nombre" AS "TipoEstacionamiento",
+    gv."Contacto",
+    gv."CorreoContacto",
+    gv."TelefonoContacto",
+    gv."ExtensionContacto"
   FROM "GrupoVisita" gv
   LEFT JOIN "CatalogoEstacionamiento" e ON e."Oid" = gv."Estacionamiento"
   INNER JOIN "Grupo" g ON g."Oid" = gv."Grupo" AND gv."GCRecord" IS NULL
@@ -1532,7 +1540,6 @@ export const get_BuscarGrupoPaginado = (filtro: any,condicionRol3:string) => {
   return query;
 };
 
-
 /*===================================================MUTATION==========================================*/
 
 const NUEVO_OID =
@@ -1646,6 +1653,7 @@ export const set_nuevaSolicitudAcceso = (solicitud: any) => {
  "Estatus","FotografiaB64","RegistraEnVentanilla", "FechaHoraVisita","FechaHoraFinVisita","Notificado",
  "PersonaVisitada","CargoPersonaVisitada","MedioIdentificacion","TipoVisita","Estacionamiento","IngresaEquipo","EsPreregistro","PorcentajeListaNegra",
  "EsPrincipal","SolicitudPrincipal",
+ "Contacto","CorreoContacto","TelefonoContacto","ExtensionContacto",
   "FechaHoraAceptacion","FechaHoraSolicitud","OptimisticLockField","GCRecord") VALUES 
   (${NUEVO_OID},
     '${solicitud.VisitaA}',
@@ -1695,6 +1703,10 @@ export const set_nuevaSolicitudAcceso = (solicitud: any) => {
         ? "null"
         : `'${solicitud.SolicitudPrincipal}'`
     },
+     ${solicitud.Contacto == undefined || solicitud.Contacto == null || solicitud.Contacto == "" ? "null" : `'${solicitud.Contacto}'`},
+     ${solicitud.CorreoContacto == undefined || solicitud.CorreoContacto == null || solicitud.CorreoContacto == "" ? "null" : `'${solicitud.CorreoContacto}'`},
+     ${solicitud.TelefonoContacto == undefined || solicitud.TelefonoContacto == null || solicitud.TelefonoContacto == "" ? "null" : `'${solicitud.TelefonoContacto}'`},
+     ${solicitud.ExtensionContacto == undefined || solicitud.ExtensionContacto == null || solicitud.ExtensionContacto == "" ? "null" : `'${solicitud.ExtensionContacto}'`},
     (SELECT now()),(SELECT now()),1,NULL)
   RETURNING "Oid";`;
   return query;
@@ -1718,7 +1730,11 @@ export const set_actualizarSolicitudVisita = (solicitud: any) => {
         ? `"Estacionamiento"`
         : `'${solicitud.TipoEstacionamiento}'`
     },
-    "Notificado" = false
+    "Notificado" = false,
+     "Contacto" = ${solicitud.Contacto == undefined || solicitud.Contacto == null || solicitud.Contacto == "" ? "null" : `'${solicitud.Contacto}'`},
+     "CorreoContacto" = ${solicitud.CorreoContacto == undefined || solicitud.CorreoContacto == null || solicitud.CorreoContacto == "" ? "null" : `'${solicitud.CorreoContacto}'`},
+     "TelefonoContacto" = ${solicitud.TelefonoContacto == undefined || solicitud.TelefonoContacto == null || solicitud.TelefonoContacto == "" ? "null" : `'${solicitud.TelefonoContacto}'`},
+     "ExtensionContacto" = ${solicitud.ExtensionContacto == undefined || solicitud.ExtensionContacto == null || solicitud.ExtensionContacto == "" ? "null" : `'${solicitud.ExtensionContacto}'`}
   WHERE "Oid" = '${solicitud.Oid}'
   RETURNING 
     "Oid";`;
@@ -1869,7 +1885,8 @@ limit 5
 
 export const set_NuevoGrupo = (grupo: any,oidLogin:string) => {
   const query = ` 
-  INSERT INTO "Grupo"("Oid", "Nombre", "Clave","Responsable","Telefono","Sede","Dependencia","Activo", "UsuarioRegistra","FechaCreacion","OptimisticLockField","GCRecord") 
+  INSERT INTO "Grupo"("Oid", "Nombre", "Clave","Responsable","Telefono",
+  "Sede","Dependencia","Activo", "UsuarioRegistra","FechaCreacion","OptimisticLockField","GCRecord") 
      SELECT ${NUEVO_OID},
      '${grupo.Nombre}',
      '${grupo.Clave}',
@@ -1917,6 +1934,7 @@ export const set_actualizarGrupoInvitado = (OidGrupoInvitado:any,Activo:boolean)
 export const set_nuevaVisitaGrupo = (solicitud: any,OidUsuarioRegistra:string) => {
   let query = ` 
     INSERT INTO "GrupoVisita" ("Oid", "Grupo", "VisitaA","TipoVisita", "FechaHoraVisita","FechaHoraFinVisita","Comentarios","Notificado","Estacionamiento",
+   "Contacto","CorreoContacto","TelefonoContacto","ExtensionContacto",
     "FechaCreacion","UsuarioRegistra","EsPreregistro","Cancelado","PersonaCancela","FechaCancelado","OptimisticLockField","GCRecord") VALUES
      (${NUEVO_OID},
      '${solicitud.OidGrupo}',
@@ -1935,6 +1953,10 @@ export const set_nuevaVisitaGrupo = (solicitud: any,OidUsuarioRegistra:string) =
         ? "null"
         : `'${solicitud.TipoEstacionamiento}'`
     },
+     ${solicitud.Contacto == undefined || solicitud.Contacto == null || solicitud.Contacto == "" ? "null" : `'${solicitud.Contacto}'`},
+     ${solicitud.CorreoContacto == undefined || solicitud.CorreoContacto == null || solicitud.CorreoContacto == "" ? "null" : `'${solicitud.CorreoContacto}'`},
+     ${solicitud.TelefonoContacto == undefined || solicitud.TelefonoContacto == null || solicitud.TelefonoContacto == "" ? "null" : `'${solicitud.TelefonoContacto}'`},
+     ${solicitud.ExtensionContacto == undefined || solicitud.ExtensionContacto == null || solicitud.ExtensionContacto == "" ? "null" : `'${solicitud.ExtensionContacto}'`},
     (SELECT NOW()),
      '${OidUsuarioRegistra}',
      ${solicitud.PreRegistro},
@@ -1945,7 +1967,9 @@ export const set_nuevaVisitaGrupo = (solicitud: any,OidUsuarioRegistra:string) =
 export const set_nuevaSolicitudAccesoVisitaGrupo = (solicitud: any) => {
   const query = `INSERT INTO "Solicitud"  ("Oid", "VisitaA", "Invitado","Asunto", "Grupo",
   "Dependencia", "Sede","Estatus","RegistraEnVentanilla", "FechaHoraVisita","FechaHoraFinVisita","Notificado","Placas",
- "TipoVisita","Estacionamiento","EsPreregistro","EsPrincipal","FechaHoraAceptacion","FechaHoraSolicitud","OptimisticLockField","GCRecord") VALUES 
+ "TipoVisita","Estacionamiento","EsPreregistro",
+ "Contacto","CorreoContacto","TelefonoContacto","ExtensionContacto",
+ "EsPrincipal","FechaHoraAceptacion","FechaHoraSolicitud","OptimisticLockField","GCRecord") VALUES 
   (${NUEVO_OID},
     '${solicitud.VisitaA}',
     '${solicitud.Invitado}',
@@ -1970,6 +1994,10 @@ export const set_nuevaSolicitudAccesoVisitaGrupo = (solicitud: any) => {
         : `'${solicitud.TipoEstacionamiento}'`
     },
     ${solicitud.PreRegistro},  
+     ${solicitud.Contacto == undefined || solicitud.Contacto == null || solicitud.Contacto == "" ? "null" : `'${solicitud.Contacto}'`},
+     ${solicitud.CorreoContacto == undefined || solicitud.CorreoContacto == null || solicitud.CorreoContacto == "" ? "null" : `'${solicitud.CorreoContacto}'`},
+     ${solicitud.TelefonoContacto == undefined || solicitud.TelefonoContacto == null || solicitud.TelefonoContacto == "" ? "null" : `'${solicitud.TelefonoContacto}'`},
+     ${solicitud.ExtensionContacto == undefined || solicitud.ExtensionContacto == null || solicitud.ExtensionContacto == "" ? "null" : `'${solicitud.ExtensionContacto}'`},
     false,
     (SELECT now()),(SELECT now()),1,NULL)
   RETURNING "Oid";`;
@@ -2007,7 +2035,11 @@ export const set_actualizarSolicitudGrupoVisita = (grupoVisita: any) => {
         ? "null"
         : `'${grupoVisita.TipoEstacionamiento}'`
     },
-    "Notificado" = false
+    "Notificado" = false,
+     "Contacto" = ${grupoVisita.Contacto == undefined || grupoVisita.Contacto == null || grupoVisita.Contacto == "" ? "null" : `'${grupoVisita.Contacto}'`},
+     "CorreoContacto" = ${grupoVisita.CorreoContacto == undefined || grupoVisita.CorreoContacto == null || grupoVisita.CorreoContacto == "" ? "null" : `'${grupoVisita.CorreoContacto}'`},
+     "TelefonoContacto" = ${grupoVisita.TelefonoContacto == undefined || grupoVisita.TelefonoContacto == null || grupoVisita.TelefonoContacto == "" ? "null" : `'${grupoVisita.TelefonoContacto}'`},
+     "ExtensionContacto" = ${grupoVisita.ExtensionContacto == undefined || grupoVisita.ExtensionContacto == null || grupoVisita.ExtensionContacto == "" ? "null" : `'${grupoVisita.ExtensionContacto}'`}
   WHERE "Oid" = '${grupoVisita.Oid}'
   RETURNING 
     "Oid";`;

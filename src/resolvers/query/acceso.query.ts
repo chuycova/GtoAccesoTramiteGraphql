@@ -38,13 +38,15 @@ import {
   get_SolicitudesAccesoInvitadosGrupoPaginado,
   get_VisitasXGrupo,
   get_VisitasXGrupoPaginado,
-  get_CatalogoEstacionamiento,
+  get_CatalogoEstacionamiento
 } from "../../constants/acceso-db-operations";
 import { NoSqlInyection } from "../../lib/RemplazarSQL";
 import { Utils } from "../../lib/utils";
 import { get_ListaNegra, get_ListaNegraFiltro, get_ListaNegraOid, get_ListaNegraPaginado } from "../../constants/acceso-lista-negra-db-operations";
+import { ApiWelcome } from "../../data/envio-cita-app";
 
 var noSqlInyection = new NoSqlInyection();
+const _ApiWelcome = new ApiWelcome();
 
 const queryAcceso = {
   Query: {
@@ -561,6 +563,55 @@ const queryAcceso = {
       return res;
     },
     
+    /*-------Query para esperar el tiempo de espuesta de Lista Blanca para imprimir QR (Jesus)----- */
+    getSolicitudAccesoImprimirQR: async (_: void, parent: any, { psql,token }: any) => {
+      let info: any = new JWT().verify(token);
+      if (
+        info === "Token es inválida."
+      ) {        
+        throw new Error("Error de tiempo de respuesta");
+      }
+      // Obtener la fecha de creación de la solicitud
+      const eventQuery = get_SolicitudAccesoOid(parent.Oid);
+      const solicitudRes = await psql.oneOrNone(eventQuery);
+
+      if (!solicitudRes || !solicitudRes.FechaHoraSolicitud) {
+        throw new Error("No se pudo obtener la Visita.");
+      }
+
+      const fechaCreacion = new Date(solicitudRes.FechaHoraSolicitud.replace(" ", "T"));
+
+      if (isNaN(fechaCreacion.getTime())) {
+        throw new Error("La fecha de creación no es válida.");
+      }
+
+      let condicionCumplida = false;
+      let tiempoTranscurrido = 0;
+      const intervaloEspera = 5000; // 5 segundos
+      const tiempoLimite = 60000; // 60 segundos (1 minuto)
+
+      do {
+        
+        const response = await _ApiWelcome.api_qr_solicitud({Oid:parent.Oid});
+        if(response.status == 200){
+          condicionCumplida = true;
+          break;
+        }else{
+
+        }
+        
+        // Espera antes de la siguiente iteración
+        await new Promise((resolve) => setTimeout(resolve, intervaloEspera));
+        tiempoTranscurrido += intervaloEspera;
+
+      } while (!condicionCumplida && tiempoTranscurrido < tiempoLimite);
+
+      // Retornar el estado y el tiempo transcurrido
+      return {
+        status: condicionCumplida,
+        tiempo: tiempoTranscurrido / 1000, // Convertir milisegundos a segundos
+      };
+    },
     /*--------Querys de Solicitudes por Grupo*/
     getGrupos: async (_: void, parent: any, { psql,token }: any) => {
       let info: any = new JWT().verify(token);

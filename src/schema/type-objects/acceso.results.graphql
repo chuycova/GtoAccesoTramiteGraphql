@@ -110,6 +110,10 @@ type ResultSolicitudAcceso {
   FechaUltimaHoraSalida: String
   NoAcompaniantes:Int
   SolicitudPrincipal: String
+  Contacto: String
+  CorreoContacto: String
+  TelefonoContacto: String
+  ExtensionContacto: String
 }
 
 type ResultListaNegra {
@@ -249,7 +253,10 @@ type ResultEstacionamiento {
   ImagenBase64: String
 }
 
-
+type ResultImprimirEtiqueta{
+  status: Boolean
+  tiempo: Float
+}
 
 "------ Result para Solicitudes en Grupo"
 
@@ -347,4 +354,8 @@ type ResultSolicitudAccesoGrupo {
   EsPreregistro: Boolean
   TipoEstacionamiento:String
   OidTipoEstacionamiento:String
+  Contacto: String
+  CorreoContacto: String
+  TelefonoContacto: String
+  ExtensionContacto: String
 }

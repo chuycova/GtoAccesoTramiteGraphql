@@ -70,6 +70,10 @@ input SolicitudAccesoInput {
   PorcentajeListaNegra: Int
   NoAcompaniantes:Int
   Vigencia: SolicitudAccesoVigenciaInput
+  Contacto: String
+  CorreoContacto: String
+  TelefonoContacto: String
+  ExtensionContacto: String
 }
 input SolicitudAccesoVigenciaInput {
   Dias: [Boolean]
@@ -100,6 +104,10 @@ input SolicitudAccesoVisitaUpdate {
   PersonaVisitada: String!
   CargoPersonaVisitada: String!
   TipoEstacionamiento:String
+  Contacto: String
+  CorreoContacto: String
+  TelefonoContacto: String
+  ExtensionContacto: String
 }
 input SolicitudAccesoCancelarUpdate {
   Oid: String!
@@ -212,6 +220,10 @@ input SolicitudAccesoGrupoInput{
   TipoVisita: String!
   PreRegistro:Boolean
   TipoEstacionamiento: String
+  Contacto: String
+  CorreoContacto: String
+  TelefonoContacto: String
+  ExtensionContacto: String
 }
 
 input FiltroInvitadosGrupoInput{

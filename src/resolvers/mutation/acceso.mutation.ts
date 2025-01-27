@@ -256,20 +256,15 @@ const mutationAcceso = {
               solicitudHoraCitaTermina: resSolicitud.FechaHoraFinVisita.split(' ')[1], 
               acompanantes: resSolicitud.NoAcompaniantes,
               actualizarSolicitud:false,
-              cancelarSolicitud: false
+              cancelarSolicitud: false,
+              version:2
             };
             const response = await _ApiWelcome.api_cita_solicitud(body);
-            if(response.error == 0){
-
-
-              ///Rgistrar en tabla teporal
-              ///Rgistrar en tabla teporal
-              ///Rgistrar en tabla teporal
-              ///Rgistrar en tabla teporal
-              ///Rgistrar en tabla teporal
-              ///Rgistrar en tabla teporal
-              ///Rgistrar en tabla teporal
-
+            //Error de Registro
+            if((response.status != undefined && response.status != null) ||
+            response.error > 0 || response.estado == undefined || response.estado == null){
+              //  Estatus 3 ErrorZZ
+              //throw new ApolloError(men, response.statusText);
             }else{
 
               // let eventQueryApi = update_ConfirmarCita(res.Oid,4);
@@ -364,17 +359,17 @@ const mutationAcceso = {
                   solicitudHoraCitaTermina: resSolicitudConsecutivo.FechaHoraFinVisita.split(' ')[1],
                   acompanantes: resSolicitudConsecutivo.NoAcompaniantes,
                   actualizarSolicitud:false,
-                  cancelarSolicitud: false
+                  cancelarSolicitud: false,
+                  version:2
                 };
                 const response = await _ApiWelcome.api_cita_solicitud(body);
-                if(response.error == 0){
-                  ///Rgistrar en tabla teporal
-                  ///Rgistrar en tabla teporal
-                  ///Rgistrar en tabla teporal
-      
+                //Error de Registro
+                if((response.status != undefined && response.status != null) ||
+                response.error > 0 || response.estado == undefined || response.estado == null){
+                  //  Estatus 3 ErrorZZ
+                  //throw new ApolloError(men, response.statusText);
                 }else{
-                  // let eventQueryApi = update_ConfirmarCita(res.Oid,4);
-                  // let resApi = await psql.oneOrNone(eventQueryApi);
+                  
                 }
               } catch (error) {
                 // console.log(error)
@@ -467,7 +462,8 @@ const mutationAcceso = {
           solicitudHoraCitaTermina: resSolicitud.FechaHoraFinVisita.split(' ')[1],
           acompanantes: resSolicitud.NoAcompaniantes,
           actualizarSolicitud:true,
-          cancelarSolicitud: false
+          cancelarSolicitud: false,
+          version:2
         };
         const response = await _ApiWelcome.api_cita_solicitud(body);
         if(response.error == 0){
@@ -546,7 +542,8 @@ const mutationAcceso = {
           // solicitudHoraCitaInicia: resSolicitud.FechaHoraVisita.split(' ')[1],
           // solicitudHoraCitaTermina: resSolicitud.FechaHoraFinVisita.split(' ')[1],
           actualizarSolicitud:false,
-          cancelarSolicitud: true
+          cancelarSolicitud: true,
+          version:2
         };
         const response = await _ApiWelcome.api_cita_solicitud(body);
         if(response.error == 0){
@@ -664,7 +661,8 @@ const mutationAcceso = {
             solicitudHoraCitaTermina: resSolicitud.FechaHoraFinVisita.split(' ')[1],
             acompanantes: resSolicitud.NoAcompaniantes,
             actualizarSolicitud:true,
-            cancelarSolicitud: false
+            cancelarSolicitud: false,
+            version:2
           };
           const response = await _ApiWelcome.api_cita_solicitud(body);
           if(response.error == 0){
@@ -903,6 +901,10 @@ const mutationAcceso = {
             Placas: element.Placa,
             TipoEstacionamiento: (solicitud.TipoEstacionamiento == null || solicitud.TipoEstacionamiento== undefined || solicitud.TipoEstacionamiento== "")?element.OidTipoEstacionamiento:solicitud.TipoEstacionamiento,
             PreRegistro: solicitud.PreRegistro,
+            Contacto: solicitud.Contacto,
+            CorreoContacto: solicitud.CorreoContacto,
+            TelefonoContacto: solicitud.TelefonoContacto,
+            ExtensionContacto: solicitud.ExtensionContacto,
           }
           let eventQueryNuevaSolicitud = set_nuevaSolicitudAccesoVisitaGrupo(solicitudAcceso);
           let resNuevaSolicitud = await psql.oneOrNone(eventQueryNuevaSolicitud);
@@ -1216,7 +1218,8 @@ async function mandarApiZZGrupo(datos:any,psql:any){
       solicitudHoraCitaTermina: datos.FechaHoraFinVisita.split(' ')[1],
       acompanantes: datos.NoAcompaniantes,
       actualizarSolicitud: datos.Actualizar,
-      cancelarSolicitud: datos.Cancelar
+      cancelarSolicitud: datos.Cancelar,
+      version:2
     };
     const response = await _ApiWelcome.api_cita_solicitud(body);
     if(response.error == 0){

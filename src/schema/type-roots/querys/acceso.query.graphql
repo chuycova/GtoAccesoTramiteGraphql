@@ -34,6 +34,8 @@ type Query {
   getSolicitudAccesoOidActivaHoy(Oid:String!): ResultSolicitudAcceso
   getEstacionamiento(OidVisitaA:String!): [ResultEstacionamiento]
   
+  "Query para esperar respuesta de listaBlanca para imprimir"
+  getSolicitudAccesoImprimirQR(Oid:String!): ResultImprimirEtiqueta
 
   "Solicitudes por Grupo"
   # Traer todas las Solicitudes de los Grupos

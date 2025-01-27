@@ -5,6 +5,7 @@ export class ApiWelcome {
   private loginAppKey = process.env.URL_API_WELCOME_APP_KEY;
   private loginUser = process.env.URL_API_WELCOME_USER;
   private loginPass = process.env.URL_API_WELCOME_PASS;
+  private apiWLC_URL = process.env.URL_API_WLC;
 
   constructor() {}
 
@@ -125,5 +126,30 @@ export class ApiWelcome {
       // }
       throw new Error("No se pudo enviar Solicitud API:" + error);
     }
+  }
+  async api_qr_solicitud(body: any): Promise<any> {
+    try {
+      const url = `${this.apiWLC_URL}api/QR/getQR?qr=${body.Oid}`;
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+
+      const response = await axios.get(url, config);
+      return response.data;
+    
+  } catch (error: any) {
+    // if (error.response) {
+    //   console.error("WhatsApp Error response data:", error.response.data);
+    //   console.error("WhatsApp Error response status:", error.response.status);
+    //   console.error("WhatsApp Error response headers:", error.response.headers);
+    // } else if (error.request) {
+    //   console.error("WhatsApp Error request:", error.request);
+    // } else {
+    //   console.error("WhatsApp Error message:", error.message);
+    // }
+    throw new Error("No se pudo consultar QR API:" + error);
+  }
   }
 }

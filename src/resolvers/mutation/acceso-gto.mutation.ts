@@ -91,7 +91,7 @@ const { validate: uuidValidate } = require('uuid');
           solicitudHoraCitaInicia: (solicitud.solicitudHoraCitaInicia == null || solicitud.solicitudHoraCitaInicia == undefined)?"":solicitud.solicitudHoraCitaInicia,
           solicitudHoraCitaTermina: (solicitud.solicitudHoraCitaTermina == null || solicitud.solicitudHoraCitaTermina == undefined)?"":solicitud.solicitudHoraCitaTermina,
           acompanantes: (solicitud.acompanantes == null || solicitud.acompanantes == undefined)?"":solicitud.acompanantes,
-          version: (solicitud.version == null || solicitud.version == undefined)?"":solicitud.version,
+          version: (solicitud.version == null || solicitud.version == undefined)?"2":solicitud.version,
         };
 
         //Se guarda en Posgres la petición

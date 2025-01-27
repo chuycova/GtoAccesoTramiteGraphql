@@ -144,7 +144,8 @@ const mutationTramiteCita = {
               solicitudHoraCitaInicia: resSolicitud.FechaHoraVisita.split(' ')[1],
               solicitudHoraCitaTermina: resSolicitud.FechaHoraFinVisita.split(' ')[1],
               acompanantes:0,
-              actualizarSolicitud:false
+              actualizarSolicitud:false,
+              version:2
             };
             const response = await _ApiWelcome.api_cita_solicitud(body);
             if(response.error == 0){
